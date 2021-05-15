@@ -15,6 +15,7 @@ class FG_Prices_FG_Pickups {
 	private function __construct() {
 		add_filter( 'fg_pickups_specifications_price_field_type', array( $this, 'price_field_type' ) );
 		add_filter( 'fg_pickups_specifications_fields', array( $this, 'specifications_fields' ) );
+		add_filter( 'fg_pickups_post_type_get_price', array( $this, 'pickups_post_type_get_price' ) );
 
 	}
 
@@ -36,5 +37,16 @@ class FG_Prices_FG_Pickups {
 		}
 
 		return $fields;
+	}
+
+	public function pickups_post_type_get_price( $price ) {
+
+		$default_currency = FG_Prices_Settings::instance()->get_setting( 'fg_default_currency' );
+
+		if ( ! empty( $default_currency ) && ! empty( $price[ $default_currency ] ) ) {
+			$price = $price[ $default_currency ];
+		}
+
+		return $price;
 	}
 }
