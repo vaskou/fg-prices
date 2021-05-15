@@ -20,7 +20,13 @@ define( 'FG_PRICES_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
 define( 'FG_PRICES_PLUGIN_DIR_NAME', basename( FG_PRICES_PLUGIN_DIR_PATH ) );
 define( 'FG_PRICES_PLUGIN_URL', plugins_url( FG_PRICES_PLUGIN_DIR_NAME ) );
 
+include 'vendor/autoload.php';
+
 include 'includes/class-fg-prices.php';
+include 'includes/class-fg-prices-dependencies.php';
+include 'includes/class-fg-prices-settings.php';
+
+include 'includes/cmb2-fields/cmb2-multicurrency-prices/cmb2-multicurrency-prices.php';
 
 FG_Prices::instance();
 

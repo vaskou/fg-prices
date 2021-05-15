@@ -15,6 +15,8 @@ class FG_Prices {
 	private function __construct() {
 		add_action( 'plugins_loaded', array( $this, 'on_plugins_loaded' ) );
 
+		FG_Prices_Dependencies::instance();
+		FG_Prices_Settings::instance();
 	}
 
 	public function on_plugins_loaded() {
