@@ -30,7 +30,8 @@ class FG_Prices_Settings extends SettingsSetup {
 		$this->add_section( new SettingSection( 'currencies', __( 'Currencies', 'fg-prices' ) ) );
 
 		$settings = array(
-			new SettingField( 'fg_currencies', __( 'Currencies', 'fg-prices' ), 'text', 'currencies' )
+			new SettingField( 'fg_currencies', __( 'Currencies', 'fg-prices' ), 'text', 'currencies' ),
+			new SettingField( 'fg_default_currency', __( 'Default Currency', 'fg-prices' ), 'text', 'currencies' ),
 		);
 
 		foreach ( $settings as $setting ) {

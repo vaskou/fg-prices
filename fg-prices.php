@@ -24,6 +24,7 @@ include 'vendor/autoload.php';
 
 include 'includes/class-fg-prices.php';
 include 'includes/class-fg-prices-dependencies.php';
+include 'includes/class-fg-prices-fg-pickups.php';
 include 'includes/class-fg-prices-settings.php';
 
 include 'includes/cmb2-fields/cmb2-multicurrency-prices/cmb2-multicurrency-prices.php';
