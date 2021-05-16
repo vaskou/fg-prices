@@ -15,7 +15,7 @@ class FG_Prices_FG_Pickups {
 	private function __construct() {
 		add_filter( 'fg_pickups_specifications_price_field_type', array( $this, 'price_field_type' ) );
 		add_filter( 'fg_pickups_specifications_fields', array( $this, 'specifications_fields' ) );
-		add_filter( 'fg_pickups_post_type_get_price', array( $this, 'pickups_post_type_get_price' ) );
+		add_filter( 'fg_pickups_post_type_get_price', array( $this, 'pickups_post_type_get_price' ), 10, 2 );
 
 	}
 
@@ -41,13 +41,17 @@ class FG_Prices_FG_Pickups {
 		return $fields;
 	}
 
-	public function pickups_post_type_get_price( $price ) {
+	public function pickups_post_type_get_price( $price, $post_id ) {
+
+		$multicurrency_prices = get_post_meta( $post_id, 'fgp_specifications_multicurrency_prices', true );
 
 		$default_currency = FG_Prices_Settings::instance()->get_default_currency();
 
-		if ( ! empty( $default_currency ) && ! empty( $price[ $default_currency ] ) ) {
-			$price = $price[ $default_currency ];
+		if ( ! empty( $default_currency ) && ! empty( $multicurrency_prices[ $default_currency ] ) ) {
+			$price = $multicurrency_prices[ $default_currency ];
 		}
+
+		$price = apply_filters( 'fg_prices_get_multicurrency_prices', $price, $multicurrency_prices );
 
 		return $price;
 	}
