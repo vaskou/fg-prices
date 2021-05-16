@@ -32,8 +32,10 @@ class FG_Prices_FG_Pickups {
 			$fields['multicurrency_prices'] = array(
 				'name'    => $fields['price']['name'],
 				'type'    => CMB2_Type_Multicurrency_Prices::FIELD_TYPE,
-				'default' => ! empty( $default ) ? $default : ''
+				'default' => ! empty( $default ) ? $default : '',
 			);
+
+			$fields['price']['sanitization_cb'] = array( $this, 'old_price_sanitization' );
 		}
 
 		return $fields;
@@ -41,12 +43,30 @@ class FG_Prices_FG_Pickups {
 
 	public function pickups_post_type_get_price( $price ) {
 
-		$default_currency = FG_Prices_Settings::instance()->get_setting( 'fg_default_currency' );
+		$default_currency = FG_Prices_Settings::instance()->get_default_currency();
 
 		if ( ! empty( $default_currency ) && ! empty( $price[ $default_currency ] ) ) {
 			$price = $price[ $default_currency ];
 		}
 
 		return $price;
+	}
+
+	/**
+	 * @param $value mixed
+	 * @param $field_args array
+	 * @param $field CMB2_Field
+	 *
+	 * @return mixed
+	 */
+	public function old_price_sanitization( $value, $field_args, $field ) {
+
+		$default_currency = FG_Prices_Settings::instance()->get_default_currency();
+
+		if ( isset( $field->data_to_save['fgp_specifications_multicurrency_prices'][ $default_currency ] ) ) {
+			$value = sanitize_text_field( $field->data_to_save['fgp_specifications_multicurrency_prices'][ $default_currency ] );
+		}
+
+		return $value;
 	}
 }

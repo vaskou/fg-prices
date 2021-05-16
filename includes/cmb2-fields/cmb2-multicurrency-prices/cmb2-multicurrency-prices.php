@@ -21,8 +21,7 @@ class CMB2_Type_Multicurrency_Prices {
 		$currencies       = FG_Prices_Settings::instance()->get_setting( 'fg_currencies' );
 		$this->currencies = explode( ',', $currencies );
 
-		$default_currency       = FG_Prices_Settings::instance()->get_setting( 'fg_default_currency' );
-		$this->default_currency = ! empty( $default_currency ) ? $default_currency : reset( $this->currencies );
+		$this->default_currency = FG_Prices_Settings::instance()->get_default_currency();
 
 		$field_type = self::FIELD_TYPE;
 		add_action( "cmb2_render_{$field_type}", array( $this, 'render' ), 10, 5 );
@@ -54,7 +53,7 @@ class CMB2_Type_Multicurrency_Prices {
 					'type'  => 'text',
 					'id'    => $field_type->_id( '_multicurrency_price_' . $currency_code ),
 					'name'  => $field_type->_name( '[' . $currency_code . ']' ),
-					'value' => ! empty( $escaped_value[ $currency_code ] ) ? $escaped_value[ $currency_code ] : $default_value,
+					'value' => isset( $escaped_value[ $currency_code ] ) ? $escaped_value[ $currency_code ] : $default_value,
 				);
 
 				?>
@@ -64,7 +63,6 @@ class CMB2_Type_Multicurrency_Prices {
                 </div>
 			<?php
 			endforeach;
-
 			?>
 
         </div>

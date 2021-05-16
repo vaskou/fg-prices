@@ -40,4 +40,14 @@ class FG_Prices_Settings extends SettingsSetup {
 
 		parent::__construct();
 	}
+
+	public function get_default_currency() {
+		$currencies = $this->get_setting( 'fg_currencies' );
+		$currencies = explode( ',', $currencies );
+
+		$default_currency = $this->get_setting( 'fg_default_currency' );
+
+		return ! empty( $default_currency ) && ! empty( $currencies[ $default_currency ] ) ? $default_currency : reset( $currencies );
+
+	}
 }
