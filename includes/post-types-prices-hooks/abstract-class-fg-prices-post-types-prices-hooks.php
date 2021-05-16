@@ -1,33 +1,19 @@
 <?php
 
-class FG_Prices_FG_Available_Guitars {
+abstract class FG_Prices_Post_Types_Prices_Hooks {
 
-	private static $_instance;
-
-	public static function instance() {
-		if ( is_null( self::$_instance ) ) {
-			self::$_instance = new self();
-		}
-
-		return self::$_instance;
-	}
-
-	private function __construct() {
-		add_filter( 'fg_available_guitars_price_field_type', array( $this, 'price_field_type' ) );
-		add_filter( 'fg_available_guitars_fields', array( $this, 'available_guitars_fields' ) );
-		add_filter( 'fg_available_guitars_post_type_get_price', array( $this, 'available_guitars_post_type_get_price' ), 10, 2 );
-
-	}
+	protected $price_meta_key;
+	protected $multicurrency_prices_meta_key;
 
 	public function price_field_type( $field_type ) {
 		return 'hidden';
 	}
 
-	public function available_guitars_fields( $fields ) {
+	public function post_type_fields( $fields ) {
 		$post_id = ! empty( $_REQUEST['post'] ) ? $_REQUEST['post'] : 0;
 
 		if ( ! empty( $fields['price'] ) ) {
-			$default = get_post_meta( $post_id, 'fg_available_guitars_price', true );
+			$default = get_post_meta( $post_id, $this->price_meta_key, true );
 
 			$fields['multicurrency_prices'] = array(
 				'name'    => $fields['price']['name'],
@@ -41,9 +27,9 @@ class FG_Prices_FG_Available_Guitars {
 		return $fields;
 	}
 
-	public function available_guitars_post_type_get_price( $price, $post_id ) {
+	public function post_type_get_price( $price, $post_id ) {
 
-		$multicurrency_prices = get_post_meta( $post_id, 'fg_available_guitars_multicurrency_prices', true );
+		$multicurrency_prices = get_post_meta( $post_id, $this->multicurrency_prices_meta_key, true );
 
 		$default_currency = FG_Prices_Settings::instance()->get_default_currency();
 
@@ -67,8 +53,8 @@ class FG_Prices_FG_Available_Guitars {
 
 		$default_currency = FG_Prices_Settings::instance()->get_default_currency();
 
-		if ( isset( $field->data_to_save['fg_available_guitars_multicurrency_prices'][ $default_currency ] ) ) {
-			$value = sanitize_text_field( $field->data_to_save['fg_available_guitars_multicurrency_prices'][ $default_currency ] );
+		if ( isset( $field->data_to_save[ $this->multicurrency_prices_meta_key ][ $default_currency ] ) ) {
+			$value = sanitize_text_field( $field->data_to_save[ $this->multicurrency_prices_meta_key ][ $default_currency ] );
 		}
 
 		return $value;
