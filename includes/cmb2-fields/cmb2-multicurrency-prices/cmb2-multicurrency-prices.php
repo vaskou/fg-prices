@@ -50,10 +50,11 @@ class CMB2_Type_Multicurrency_Prices {
 				$default_value = $currency_code == $this->default_currency ? $field->get_default() : '';
 
 				$args = array(
-					'type'  => 'text',
+					'type'  => 'number',
 					'id'    => $field_type->_id( '_multicurrency_price_' . $currency_code ),
 					'name'  => $field_type->_name( '[' . $currency_code . ']' ),
 					'value' => isset( $escaped_value[ $currency_code ] ) ? $escaped_value[ $currency_code ] : $default_value,
+					'class' => 'cmb2-text-small',
 				);
 
 				?>
