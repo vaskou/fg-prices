@@ -29,9 +29,14 @@ class FG_Prices_Settings extends SettingsSetup {
 
 		$this->add_section( new SettingSection( 'currencies', __( 'Currencies', 'fg-prices' ) ) );
 
+		$currencies = FG_Prices_Currencies::get_currencies();
+		$args       = array(
+			'options' => $currencies
+		);
+
 		$settings = array(
 			new SettingField( 'fg_currencies', __( 'Currencies', 'fg-prices' ), 'text', 'currencies' ),
-			new SettingField( 'fg_default_currency', __( 'Default Currency', 'fg-prices' ), 'text', 'currencies' ),
+			new SettingField( 'fg_default_currency', __( 'Default Currency', 'fg-prices' ), 'select', 'currencies', $args ),
 		);
 
 		foreach ( $settings as $setting ) {
@@ -39,6 +44,30 @@ class FG_Prices_Settings extends SettingsSetup {
 		}
 
 		parent::__construct();
+	}
+
+	public function settings_field_callback( $args ) {
+		parent::settings_field_callback( $args );
+
+		$field_name = $args['field_name'];
+
+		$setting = get_option( $field_name );
+
+		$type = ! empty( $args['type'] ) ? $args['type'] : 'text';
+
+		switch ( $type ) {
+			case 'select':
+				$options = ! empty( $args['options'] ) ? $args['options'] : array();
+				?>
+                <select name="<?php echo $field_name; ?>">
+					<?php foreach ( $options as $key => $option ): ?>
+                        <option value="<?php echo esc_attr( $key ); ?>" <?php selected( $setting, $key ) ?>><?php echo $option; ?></option>
+					<?php endforeach; ?>
+                </select>
+				<?php
+
+				break;
+		}
 	}
 
 	public function get_default_currency() {

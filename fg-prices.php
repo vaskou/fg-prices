@@ -23,6 +23,7 @@ define( 'FG_PRICES_PLUGIN_URL', plugins_url( FG_PRICES_PLUGIN_DIR_NAME ) );
 include 'vendor/autoload.php';
 
 include 'includes/class-fg-prices.php';
+include 'includes/class-fg-prices-currencies.php';
 include 'includes/class-fg-prices-dependencies.php';
 include 'includes/class-fg-prices-settings.php';
 
