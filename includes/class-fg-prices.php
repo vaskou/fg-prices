@@ -18,6 +18,7 @@ class FG_Prices {
 		FG_Prices_Dependencies::instance();
 		FG_Prices_Settings::instance();
 		FG_Prices_FG_Available_Guitars::instance();
+		FG_Prices_FG_Guitars::instance();
 		FG_Prices_FG_Pickups::instance();
 	}
 

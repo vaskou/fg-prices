@@ -10,18 +10,24 @@ abstract class FG_Prices_Post_Types_Prices_Hooks {
 	}
 
 	public function post_type_fields( $fields ) {
-		$post_id = ! empty( $_REQUEST['post'] ) ? $_REQUEST['post'] : 0;
-
 		if ( ! empty( $fields['price'] ) ) {
-			$default = get_post_meta( $post_id, $this->price_meta_key, true );
+			$temp_fields = array();
 
-			$fields['multicurrency_prices'] = array(
-				'name'    => $fields['price']['name'],
-				'type'    => CMB2_Type_Multicurrency_Prices::FIELD_TYPE,
-				'default' => ! empty( $default ) ? $default : '',
-			);
+			foreach ( $fields as $key => $field ) {
+				$temp_fields[ $key ] = $field;
+				if ( 'price' == $key ) {
+					$temp_fields['multicurrency_prices'] = array(
+						'name' => $fields['price']['name'] . ' (' . __( 'Extra Currencies', 'fg-prices' ) . ')',
+						'type' => CMB2_Type_Multicurrency_Prices::FIELD_TYPE,
+					);
+				}
+			}
 
-			$fields['price']['sanitization_cb'] = array( $this, 'old_price_sanitization' );
+			$fields = $temp_fields;
+
+			$fields['price']['before_field'] = '<label>' . FG_Prices_Settings::instance()->get_default_currency() . '</label>&nbsp;';
+
+//			$fields['price']['sanitization_cb'] = array( $this, 'old_price_sanitization' );
 		}
 
 		return $fields;
@@ -29,17 +35,15 @@ abstract class FG_Prices_Post_Types_Prices_Hooks {
 
 	public function post_type_get_price( $price, $post_id ) {
 
-		$multicurrency_prices = get_post_meta( $post_id, $this->multicurrency_prices_meta_key, true );
-
 		$default_currency = FG_Prices_Settings::instance()->get_default_currency();
 
-		if ( ! empty( $default_currency ) && ! empty( $multicurrency_prices[ $default_currency ] ) ) {
-			$price = $multicurrency_prices[ $default_currency ];
+		$multicurrency_prices = get_post_meta( $post_id, $this->multicurrency_prices_meta_key, true );
+
+		if ( ! empty( $default_currency ) ) {
+			$multicurrency_prices[ $default_currency ] = $price;
 		}
 
-		$price = apply_filters( 'fg_prices_get_multicurrency_prices', $price, $multicurrency_prices );
-
-		return $price;
+		return apply_filters( 'fg_prices_get_multicurrency_prices', $price, $multicurrency_prices );
 	}
 
 	/**

@@ -47,6 +47,10 @@ class CMB2_Type_Multicurrency_Prices {
 			foreach ( $this->currencies as $currency ):
 				$currency_code = $currency;
 
+				if ( $currency_code == $this->default_currency ) {
+					continue;
+				}
+
 				$default_value = $currency_code == $this->default_currency ? $field->get_default() : '';
 
 				$args = array(

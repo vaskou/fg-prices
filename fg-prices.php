@@ -30,6 +30,7 @@ include 'includes/cmb2-fields/cmb2-multicurrency-prices/cmb2-multicurrency-price
 
 include 'includes/post-types-prices-hooks/abstract-class-fg-prices-post-types-prices-hooks.php';
 include 'includes/post-types-prices-hooks/class-fg-prices-fg-available-guitars.php';
+include 'includes/post-types-prices-hooks/class-fg-prices-fg-guitars.php';
 include 'includes/post-types-prices-hooks/class-fg-prices-fg-pickups.php';
 
 FG_Prices::instance();
