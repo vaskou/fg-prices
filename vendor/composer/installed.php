@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '295248879a51c50e91068ddce15a1fcda3dc11f7',
+    'reference' => 'b63f18a7480dc5e08c168c3f883a105168c4d45b',
     'name' => '__root__',
   ),
   'versions' => 
@@ -18,16 +18,16 @@
       'aliases' => 
       array (
       ),
-      'reference' => '295248879a51c50e91068ddce15a1fcda3dc11f7',
+      'reference' => 'b63f18a7480dc5e08c168c3f883a105168c4d45b',
     ),
     'vaskou/wordpress-custom-settings' => 
     array (
-      'pretty_version' => 'v1.0.0',
-      'version' => '1.0.0.0',
+      'pretty_version' => 'v1.1.1',
+      'version' => '1.1.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => '7fcf2be52e3f9765d977155f5c0812f009cbc4fa',
+      'reference' => '52b80572ad1f048ea617a273736c2e683d85ff79',
     ),
   ),
 );

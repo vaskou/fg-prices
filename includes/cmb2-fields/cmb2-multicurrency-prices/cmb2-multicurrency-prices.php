@@ -18,8 +18,7 @@ class CMB2_Type_Multicurrency_Prices {
 	}
 
 	public function __construct() {
-		$currencies       = FG_Prices_Settings::instance()->get_setting( 'fg_currencies' );
-		$this->currencies = explode( ',', $currencies );
+		$this->currencies = FG_Prices_Settings::instance()->get_setting( 'fg_currencies' );
 
 		$this->default_currency = FG_Prices_Settings::instance()->get_default_currency();
 

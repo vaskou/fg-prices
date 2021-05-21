@@ -2,20 +2,20 @@
     "packages": [
         {
             "name": "vaskou/wordpress-custom-settings",
-            "version": "v1.0.0",
-            "version_normalized": "1.0.0.0",
+            "version": "v1.1.1",
+            "version_normalized": "1.1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vaskou/wordpress-custom-settings.git",
-                "reference": "7fcf2be52e3f9765d977155f5c0812f009cbc4fa"
+                "reference": "52b80572ad1f048ea617a273736c2e683d85ff79"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vaskou/wordpress-custom-settings/zipball/7fcf2be52e3f9765d977155f5c0812f009cbc4fa",
-                "reference": "7fcf2be52e3f9765d977155f5c0812f009cbc4fa",
+                "url": "https://api.github.com/repos/vaskou/wordpress-custom-settings/zipball/52b80572ad1f048ea617a273736c2e683d85ff79",
+                "reference": "52b80572ad1f048ea617a273736c2e683d85ff79",
                 "shasum": ""
             },
-            "time": "2021-05-15T07:09:26+00:00",
+            "time": "2021-05-21T16:33:10+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -36,7 +36,7 @@
             "description": "Wordpress Custom Settings",
             "support": {
                 "issues": "https://github.com/vaskou/wordpress-custom-settings/issues",
-                "source": "https://github.com/vaskou/wordpress-custom-settings/tree/v1.0.0"
+                "source": "https://github.com/vaskou/wordpress-custom-settings/tree/v1.1.1"
             },
             "install-path": "../vaskou/wordpress-custom-settings"
         }
