@@ -39,6 +39,8 @@ abstract class FG_Prices_Post_Types_Prices_Hooks {
 
 		$multicurrency_prices = get_post_meta( $post_id, $this->multicurrency_prices_meta_key, true );
 
+		$multicurrency_prices = ! empty( $multicurrency_prices ) ? $multicurrency_prices : array();
+
 		if ( ! empty( $default_currency ) ) {
 			$multicurrency_prices[ $default_currency ] = $price;
 		}
