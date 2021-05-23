@@ -52,7 +52,7 @@ class FG_Prices_Settings extends SettingsSetup {
 
 		$default_currency = $this->get_setting( 'fg_default_currency' );
 
-		return ! empty( $default_currency ) && ! empty( $currencies[ $default_currency ] ) ? $default_currency : reset( $currencies );
+		return ! empty( $default_currency ) && in_array($default_currency,$currencies) ? $default_currency : reset( $currencies );
 
 	}
 }

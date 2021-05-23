@@ -5,6 +5,10 @@ abstract class FG_Prices_Post_Types_Prices_Hooks {
 	protected $price_meta_key;
 	protected $multicurrency_prices_meta_key;
 
+	protected function __construct() {
+//		add_filter( 'fg_prices_cmb_multicurrency_prices_after_sanitization', array( $this, 'save_default_price' ), 10, 5 );
+	}
+
 	public function price_field_type( $field_type ) {
 		return 'hidden';
 	}
@@ -46,6 +50,17 @@ abstract class FG_Prices_Post_Types_Prices_Hooks {
 		}
 
 		return apply_filters( 'fg_prices_get_multicurrency_prices', $price, $multicurrency_prices );
+	}
+
+	public function save_default_price( $sanitized_val, $val, $object_id, $field_args, $sanitizer ) {
+
+		$default_currency = FG_Prices_Settings::instance()->get_default_currency();
+
+		if ( isset( $sanitizer->field->data_to_save[ $this->price_meta_key ] ) ) {
+			$sanitized_val[ $default_currency ] = sanitize_text_field( $sanitizer->field->data_to_save[ $this->price_meta_key ] );
+		}
+
+		return $sanitized_val;
 	}
 
 	/**

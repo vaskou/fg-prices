@@ -1,7 +1,21 @@
 <?php
 
 class FG_Prices_Currencies {
-	
+
+	public static function get_current_currency() {
+
+		$currenct_currency = FG_Prices_Settings::instance()->get_default_currency();
+
+		return apply_filters( 'fg_prices_get_current_currency', $currenct_currency );
+	}
+
+	public static function get_current_currency_symbol() {
+		$currency_symbols  = self::get_currency_symbols();
+		$currenct_currency = self::get_current_currency();
+
+		return ! empty( $currency_symbols[ $currenct_currency ] ) ? $currency_symbols[ $currenct_currency ] : '';
+	}
+
 	public static function get_currencies() {
 		static $currencies;
 

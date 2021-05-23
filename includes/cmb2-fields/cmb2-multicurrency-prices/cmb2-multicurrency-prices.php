@@ -24,7 +24,7 @@ class CMB2_Type_Multicurrency_Prices {
 
 		$field_type = self::FIELD_TYPE;
 		add_action( "cmb2_render_{$field_type}", array( $this, 'render' ), 10, 5 );
-		add_filter( "cmb2_sanitize_{$field_type}", array( $this, 'sanitize' ), 10, 2 );
+		add_filter( "cmb2_sanitize_{$field_type}", array( $this, 'sanitize' ), 10, 5 );
 		add_filter( "cmb2_types_esc_{$field_type}", array( $this, 'escape_value' ), 10, 2 );
 	}
 
@@ -46,14 +46,16 @@ class CMB2_Type_Multicurrency_Prices {
 			foreach ( $this->currencies as $currency ):
 				$currency_code = $currency;
 
+				$type = 'number';
+
 				if ( $currency_code == $this->default_currency ) {
-					continue;
+					$type = 'hidden';
 				}
 
 				$default_value = $currency_code == $this->default_currency ? $field->get_default() : '';
 
 				$args = array(
-					'type'  => 'number',
+					'type'  => $type,
 					'id'    => $field_type->_id( '_multicurrency_price_' . $currency_code ),
 					'name'  => $field_type->_name( '[' . $currency_code . ']' ),
 					'value' => isset( $escaped_value[ $currency_code ] ) && '' != $escaped_value[ $currency_code ] ? $escaped_value[ $currency_code ] : $default_value,
@@ -62,7 +64,9 @@ class CMB2_Type_Multicurrency_Prices {
 
 				?>
                 <div class="multicurrency-price-<?php echo $currency_code; ?>">
-                    <label><?php echo $currency; ?></label>
+					<?php if ( 'hidden' != $type ): ?>
+                        <label><?php echo $currency; ?></label>
+					<?php endif; ?>
 					<?php echo $field_type->input( $args ); ?>
                 </div>
 			<?php
@@ -77,7 +81,7 @@ class CMB2_Type_Multicurrency_Prices {
 		$field_type->_desc( true, true );
 	}
 
-	public function sanitize( $sanitized_val, $val ) {
+	public function sanitize( $sanitized_val, $val, $object_id, $field_args, $sanitizer ) {
 
 		if ( ! is_array( $val ) ) {
 			return array();
@@ -90,7 +94,7 @@ class CMB2_Type_Multicurrency_Prices {
 			$sanitized_val[ $key ] = is_int( $sanitized_value ) ? $sanitized_value : '';
 		}
 
-		return $sanitized_val;
+		return apply_filters( 'fg_prices_cmb_multicurrency_prices_after_sanitization', $sanitized_val, $val, $object_id, $field_args, $sanitizer );
 	}
 
 	public function escape_value( $escaped_value, $val ) {

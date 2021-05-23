@@ -19,6 +19,8 @@ class FG_Prices_FG_Guitars extends FG_Prices_Post_Types_Prices_Hooks {
 		add_filter( 'fg_guitars_pricing_fields', array( $this, 'post_type_fields' ) );
 		add_filter( 'fg_guitars_post_type_get_price', array( $this, 'post_type_get_price' ), 10, 2 );
 		add_filter( 'fg_guitars_post_type_get_extra_option_price', array( $this, 'post_type_get_extra_option_price' ), 10, 3 );
+
+		parent::__construct();
 	}
 
 	public function post_type_fields( $fields ) {
