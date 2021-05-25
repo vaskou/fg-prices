@@ -16,6 +16,12 @@ class FG_Prices_Currencies {
 		return ! empty( $currency_symbols[ $currenct_currency ] ) ? $currency_symbols[ $currenct_currency ] : '';
 	}
 
+	public static function get_european_union_countries() {
+		$countries = array( 'AT', 'BE', 'BG', 'CY', 'CZ', 'DE', 'DK', 'EE', 'ES', 'FI', 'FR', 'GR', 'HU', 'HR', 'IE', 'IT', 'LT', 'LU', 'LV', 'MT', 'NL', 'PL', 'PT', 'RO', 'SE', 'SI', 'SK' );
+
+		return apply_filters( 'fg_prices_european_union_countries', $countries );
+	}
+
 	public static function get_currencies() {
 		static $currencies;
 
