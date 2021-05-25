@@ -5,7 +5,7 @@ class CMB2_Type_Multicurrency_Prices {
 	const FIELD_TYPE = 'multicurrency_prices';
 
 	private $currencies;
-	private $default_currency;
+	private $old_currency;
 
 	private static $single_instance;
 
@@ -20,7 +20,7 @@ class CMB2_Type_Multicurrency_Prices {
 	public function __construct() {
 		$this->currencies = FG_Prices_Settings::instance()->get_setting( 'fg_currencies' );
 
-		$this->default_currency = FG_Prices_Settings::instance()->get_default_currency();
+		$this->old_currency = FG_Prices_Settings::instance()->get_old_currency();
 
 		$field_type = self::FIELD_TYPE;
 		add_action( "cmb2_render_{$field_type}", array( $this, 'render' ), 10, 5 );
@@ -48,11 +48,11 @@ class CMB2_Type_Multicurrency_Prices {
 
 				$type = 'number';
 
-				if ( $currency_code == $this->default_currency ) {
+				if ( $currency_code == $this->old_currency ) {
                     continue;
 				}
 
-				$default_value = $currency_code == $this->default_currency ? $field->get_default() : '';
+				$default_value = $currency_code == $this->old_currency ? $field->get_default() : '';
 
 				$args = array(
 					'type'  => $type,
@@ -100,7 +100,7 @@ class CMB2_Type_Multicurrency_Prices {
 	public function escape_value( $escaped_value, $val ) {
 
 		if ( ! is_array( $val ) ) {
-			$default_currency = $this->default_currency;
+			$default_currency = $this->old_currency;
 			if ( ! empty( $default_currency ) ) {
 				$val = array( $default_currency => $val );
 			} else {

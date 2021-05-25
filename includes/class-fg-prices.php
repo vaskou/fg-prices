@@ -32,7 +32,7 @@ class FG_Prices {
 	public function get_multicurrency_prices( $price, $multicurrency_prices ) {
 		$current_currency = FG_Prices_Currencies::get_current_currency();
 
-		return $multicurrency_prices[ $current_currency ] ?? null;
+		return $multicurrency_prices[ $current_currency ] ?? $price;
 	}
 
 	public function get_currency_symbol( $currency_symbol ) {
