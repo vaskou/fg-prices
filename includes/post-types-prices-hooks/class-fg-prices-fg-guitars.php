@@ -19,8 +19,6 @@ class FG_Prices_FG_Guitars extends FG_Prices_Post_Types_Prices_Hooks {
 		add_filter( 'fg_guitars_pricing_fields', array( $this, 'post_type_fields' ) );
 		add_filter( 'fg_guitars_post_type_get_price', array( $this, 'post_type_get_price' ), 10, 2 );
 		add_filter( 'fg_guitars_post_type_get_extra_option_price', array( $this, 'post_type_get_extra_option_price' ), 10, 3 );
-
-		parent::__construct();
 	}
 
 	public function post_type_fields( $fields ) {
@@ -28,7 +26,7 @@ class FG_Prices_FG_Guitars extends FG_Prices_Post_Types_Prices_Hooks {
 
 		if ( ! empty( $fields['pricing_items']['fields']['extra_option_price'] ) ) {
 
-			$fields['pricing_items']['fields']['extra_option_price']['before_field'] = '<label>' . FG_Prices_Settings::instance()->get_default_currency() . '</label>&nbsp;';
+			$fields['pricing_items']['fields']['extra_option_price']['before_field'] = '<label>' . FG_Prices_Settings::instance()->get_old_currency() . '</label>&nbsp;';
 
 			$fields['pricing_items']['fields']['multicurrency_prices'] = array(
 				'name' => $fields['pricing_items']['fields']['extra_option_price']['name'] . ' (' . __( 'Extra Currencies', 'fg-prices' ) . ')',
@@ -43,12 +41,12 @@ class FG_Prices_FG_Guitars extends FG_Prices_Post_Types_Prices_Hooks {
 
 	public function post_type_get_extra_option_price( $price,  $item, $post_id ) {
 
-		$default_currency = FG_Prices_Settings::instance()->get_default_currency();
+		$old_currency = FG_Prices_Settings::instance()->get_old_currency();
 
 		$multicurrency_prices = ! empty( $item['multicurrency_prices'] ) ? $item['multicurrency_prices'] : array();
 
-		if ( ! empty( $default_currency ) ) {
-			$multicurrency_prices[ $default_currency ] = $price;
+		if ( ! empty( $old_currency ) ) {
+			$multicurrency_prices[ $old_currency ] = $price;
 		}
 
 		return apply_filters( 'fg_prices_get_multicurrency_prices', $price, $multicurrency_prices );

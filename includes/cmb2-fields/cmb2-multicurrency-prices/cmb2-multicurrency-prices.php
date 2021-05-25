@@ -49,7 +49,7 @@ class CMB2_Type_Multicurrency_Prices {
 				$type = 'number';
 
 				if ( $currency_code == $this->default_currency ) {
-					$type = 'hidden';
+                    continue;
 				}
 
 				$default_value = $currency_code == $this->default_currency ? $field->get_default() : '';

@@ -36,6 +36,7 @@ class FG_Prices_Settings extends SettingsSetup {
 		);
 
 		$settings = array(
+			new SettingField( 'fg_old_currency', __( 'Old Currency', 'fg-prices' ), 'select', 'currencies', $args ),
 			new SettingField( 'fg_currencies', __( 'Currencies', 'fg-prices' ), 'multiselect', 'currencies', $args ),
 			new SettingField( 'fg_default_currency', __( 'Default Currency', 'fg-prices' ), 'select', 'currencies', $args ),
 		);
@@ -48,11 +49,16 @@ class FG_Prices_Settings extends SettingsSetup {
 	}
 
 	public function get_default_currency() {
-		$currencies = $this->get_setting( 'fg_currencies' );
 
 		$default_currency = $this->get_setting( 'fg_default_currency' );
 
-		return ! empty( $default_currency ) && in_array($default_currency,$currencies) ? $default_currency : reset( $currencies );
+		return ! empty( $default_currency ) ? $default_currency : '';
+	}
 
+	public function get_old_currency() {
+
+		$old_currency = $this->get_setting( 'fg_old_currency' );
+
+		return ! empty( $old_currency ) ? $old_currency : '';
 	}
 }

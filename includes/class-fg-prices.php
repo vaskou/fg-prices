@@ -30,14 +30,9 @@ class FG_Prices {
 	}
 
 	public function get_multicurrency_prices( $price, $multicurrency_prices ) {
-
 		$current_currency = FG_Prices_Currencies::get_current_currency();
 
-		if ( isset( $multicurrency_prices[ $current_currency ] ) ) {
-			$price = $multicurrency_prices[ $current_currency ];
-		}
-
-		return $price;
+		return $multicurrency_prices[ $current_currency ] ?? null;
 	}
 
 	public function get_currency_symbol( $currency_symbol ) {

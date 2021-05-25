@@ -18,8 +18,6 @@ class FG_Prices_FG_Pickups extends FG_Prices_Post_Types_Prices_Hooks {
 
 		add_filter( 'fg_pickups_specifications_fields', array( $this, 'post_type_fields' ) );
 		add_filter( 'fg_pickups_post_type_get_price', array( $this, 'post_type_get_price' ), 10, 2 );
-
-		parent::__construct();
 	}
 
 }
