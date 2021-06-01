@@ -1,0 +1,56 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "be357d935dcc5ac0c9fc5ad7d9a0dfa5",
+    "packages": [
+        {
+            "name": "vaskou/wordpress-custom-settings",
+            "version": "v1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vaskou/wordpress-custom-settings.git",
+                "reference": "52b80572ad1f048ea617a273736c2e683d85ff79"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vaskou/wordpress-custom-settings/zipball/52b80572ad1f048ea617a273736c2e683d85ff79",
+                "reference": "52b80572ad1f048ea617a273736c2e683d85ff79",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WordpressCustomSettings\\": "WordpressCustomSettings/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Vasilis Koutsopoulos",
+                    "email": "vaskou@hotmail.com"
+                }
+            ],
+            "description": "Wordpress Custom Settings",
+            "support": {
+                "issues": "https://github.com/vaskou/wordpress-custom-settings/issues",
+                "source": "https://github.com/vaskou/wordpress-custom-settings/tree/v1.1.1"
+            },
+            "time": "2021-05-21T16:33:10+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.0.0"
+}
