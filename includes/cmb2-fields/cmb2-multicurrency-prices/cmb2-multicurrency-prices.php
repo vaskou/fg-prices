@@ -6,6 +6,7 @@ class CMB2_Type_Multicurrency_Prices {
 
 	private $currencies;
 	private $old_currency;
+	private $settings_page_url;
 
 	private static $single_instance;
 
@@ -18,9 +19,13 @@ class CMB2_Type_Multicurrency_Prices {
 	}
 
 	public function __construct() {
-		$this->currencies = FG_Prices_Settings::instance()->get_setting( 'fg_currencies' );
+		$fg_prices_settings = FG_Prices_Settings::instance();
 
-		$this->old_currency = FG_Prices_Settings::instance()->get_old_currency();
+		$this->currencies = $fg_prices_settings->get_currencies();
+
+		$this->old_currency = $fg_prices_settings->get_old_currency();
+
+		$this->settings_page_url = $fg_prices_settings->get_settings_page_url();
 
 		$field_type = self::FIELD_TYPE;
 		add_action( "cmb2_render_{$field_type}", array( $this, 'render' ), 10, 5 );
@@ -39,42 +44,49 @@ class CMB2_Type_Multicurrency_Prices {
 	public function render( $field, $escaped_value, $object_id, $object_type, $field_type ) {
 		ob_start();
 
-		?>
-        <div class="multicurrency-prices-field-wrapper">
-			<?php
-
-			foreach ( $this->currencies as $currency ):
-				$currency_code = $currency;
-
-				$type = 'number';
-
-				if ( $currency_code == $this->old_currency ) {
-                    continue;
-				}
-
-				$default_value = $currency_code == $this->old_currency ? $field->get_default() : '';
-
-				$args = array(
-					'type'  => $type,
-					'id'    => $field_type->_id( '_multicurrency_price_' . $currency_code ),
-					'name'  => $field_type->_name( '[' . $currency_code . ']' ),
-					'value' => isset( $escaped_value[ $currency_code ] ) && '' != $escaped_value[ $currency_code ] ? $escaped_value[ $currency_code ] : $default_value,
-					'class' => 'cmb2-text-small',
-				);
-
-				?>
-                <div class="multicurrency-price-<?php echo $currency_code; ?>">
-					<?php if ( 'hidden' != $type ): ?>
-                        <label><?php echo $currency; ?></label>
-					<?php endif; ?>
-					<?php echo $field_type->input( $args ); ?>
-                </div>
-			<?php
-			endforeach;
+		if ( ! empty( $this->currencies ) ):
 			?>
+            <div class="multicurrency-prices-field-wrapper">
+				<?php
 
-        </div>
+				foreach ( $this->currencies as $currency ):
+					$currency_code = $currency;
+
+					$type = 'number';
+
+					if ( $currency_code == $this->old_currency ) {
+						continue;
+					}
+
+					$default_value = $currency_code == $this->old_currency ? $field->get_default() : '';
+
+					$args = array(
+						'type'  => $type,
+						'id'    => $field_type->_id( '_multicurrency_price_' . $currency_code ),
+						'name'  => $field_type->_name( '[' . $currency_code . ']' ),
+						'value' => isset( $escaped_value[ $currency_code ] ) && '' != $escaped_value[ $currency_code ] ? $escaped_value[ $currency_code ] : $default_value,
+						'class' => 'cmb2-text-small',
+					);
+
+					?>
+                    <div class="multicurrency-price-<?php echo $currency_code; ?>">
+						<?php if ( 'hidden' != $type ): ?>
+                            <label><?php echo $currency; ?></label>
+						<?php endif; ?>
+						<?php echo $field_type->input( $args ); ?>
+                    </div>
+				<?php
+				endforeach;
+				?>
+
+            </div>
+		<?php else: ?>
+            <div class="multicurrency-prices-field-wrapper">
+                <a href="<?php echo esc_url( $this->settings_page_url ); ?>" target="_blank"><span><?php _e( 'Please select the currencies from the settings page', 'fg-prices' ); ?></span></a>
+            </div>
 		<?php
+
+		endif;
 
 		echo ob_get_clean();
 

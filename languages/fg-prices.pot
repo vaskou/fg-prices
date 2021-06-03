@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FremeditiGuitars - Prices\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-01 16:07+0000\n"
+"POT-Creation-Date: 2021-06-03 16:04+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -188,8 +188,8 @@ msgstr ""
 msgid "Cuban peso"
 msgstr ""
 
-#: includes/class-fg-prices-settings.php:30
-#: includes/class-fg-prices-settings.php:40
+#: includes/class-fg-prices-settings.php:26
+#: includes/class-fg-prices-settings.php:36
 msgid "Currencies"
 msgstr ""
 
@@ -201,7 +201,7 @@ msgstr ""
 msgid "Danish krone"
 msgstr ""
 
-#: includes/class-fg-prices-settings.php:41
+#: includes/class-fg-prices-settings.php:37
 msgid "Default Currency"
 msgstr ""
 
@@ -242,8 +242,8 @@ msgstr ""
 msgid "Falkland Islands pound"
 msgstr ""
 
-#: includes/class-fg-prices-settings.php:26
-#: includes/class-fg-prices-settings.php:27
+#: includes/class-fg-prices-settings.php:22
+#: includes/class-fg-prices-settings.php:23
 msgid "FG Prices Settings"
 msgstr ""
 
@@ -476,7 +476,7 @@ msgstr ""
 msgid "Norwegian krone"
 msgstr ""
 
-#: includes/class-fg-prices-settings.php:39
+#: includes/class-fg-prices-settings.php:35
 msgid "Old Currency"
 msgstr ""
 
@@ -502,6 +502,10 @@ msgstr ""
 
 #: includes/class-fg-prices-currencies.php:146
 msgid "Philippine peso"
+msgstr ""
+
+#: includes/cmb2-fields/cmb2-multicurrency-prices/cmb2-multicurrency-prices.php:85
+msgid "Please select the currencies from the settings page"
 msgstr ""
 
 #: includes/class-fg-prices-currencies.php:148
@@ -546,6 +550,10 @@ msgstr ""
 
 #: includes/class-fg-prices-currencies.php:153
 msgid "Serbian dinar"
+msgstr ""
+
+#: includes/class-fg-prices.php:37
+msgid "Settings"
 msgstr ""
 
 #: includes/class-fg-prices-currencies.php:158
