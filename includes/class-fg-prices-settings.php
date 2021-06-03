@@ -44,6 +44,12 @@ class FG_Prices_Settings extends SettingsSetup {
 		parent::__construct();
 	}
 
+	public function get_currencies() {
+		$currencies = $this->get_setting( 'fg_currencies' );
+
+		return ! empty( $currencies ) ? $currencies : array();
+	}
+
 	public function get_default_currency() {
 
 		$default_currency = $this->get_setting( 'fg_default_currency' );
@@ -56,15 +62,5 @@ class FG_Prices_Settings extends SettingsSetup {
 		$old_currency = $this->get_setting( 'fg_old_currency' );
 
 		return ! empty( $old_currency ) ? $old_currency : '';
-	}
-
-	public function get_settings_page_url() {
-
-		return add_query_arg(
-			array(
-				'page' => $this->get_menu_slug()
-			),
-			admin_url( $this->get_submenu_parent_slug() )
-		);
 	}
 }

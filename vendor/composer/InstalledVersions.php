@@ -19,7 +19,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'b63f18a7480dc5e08c168c3f883a105168c4d45b',
+    'reference' => '45d5d4219343a716daa3313b7185e0596cf795f4',
     'name' => '__root__',
   ),
   'versions' => 
@@ -31,16 +31,16 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'b63f18a7480dc5e08c168c3f883a105168c4d45b',
+      'reference' => '45d5d4219343a716daa3313b7185e0596cf795f4',
     ),
     'vaskou/wordpress-custom-settings' => 
     array (
-      'pretty_version' => 'v1.1.1',
-      'version' => '1.1.1.0',
+      'pretty_version' => 'v1.2.0',
+      'version' => '1.2.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '52b80572ad1f048ea617a273736c2e683d85ff79',
+      'reference' => 'b6c930f95d1e8c3f7ce6fc6f24ba69639a03a0b9',
     ),
   ),
 );

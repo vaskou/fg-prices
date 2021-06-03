@@ -21,7 +21,7 @@ class CMB2_Type_Multicurrency_Prices {
 	public function __construct() {
 		$fg_prices_settings = FG_Prices_Settings::instance();
 
-		$this->currencies = $fg_prices_settings->get_setting( 'fg_currencies' );
+		$this->currencies = $fg_prices_settings->get_currencies();
 
 		$this->old_currency = $fg_prices_settings->get_old_currency();
 
