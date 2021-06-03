@@ -14,6 +14,7 @@ class FG_Prices {
 
 	private function __construct() {
 		add_action( 'plugins_loaded', array( $this, 'on_plugins_loaded' ) );
+		add_filter( 'plugin_action_links_' . FG_PRICES_PLUGIN_BASENAME, array( $this, 'plugin_action_links' ) );
 		add_filter( 'fg_prices_get_multicurrency_prices', array( $this, 'get_multicurrency_prices' ), 10, 2 );
 		add_filter( 'fremediti_guitars_get_currency_symbol', array( $this, 'get_currency_symbol' ) );
 		add_filter( 'fg_prices_get_current_currency', array( $this, 'get_current_currency' ) );
@@ -28,6 +29,15 @@ class FG_Prices {
 
 	public function on_plugins_loaded() {
 		load_plugin_textdomain( 'fg-prices', false, FG_PRICES_PLUGIN_DIR_NAME . '/languages/' );
+	}
+
+	public function plugin_action_links( $links ) {
+		$url          = FG_Prices_Settings::instance()->get_settings_page_url();
+		$plugin_links = array(
+			'<a href="' . esc_url( $url ) . '">' . esc_html__( 'Settings', 'fg-prices' ) . '</a>',
+		);
+
+		return array_merge( $plugin_links, $links );
 	}
 
 	public function get_multicurrency_prices( $price, $multicurrency_prices ) {

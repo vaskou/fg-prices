@@ -19,10 +19,6 @@ class FG_Prices_Settings extends SettingsSetup {
 	protected function __construct() {
 		$this->set_submenu_parent_slug( 'options-general.php' );
 
-		$this->page_title = 'Wordpress Custom Settings';
-		$this->menu_title = 'Wordpress Custom Settings';
-		$this->menu_slug  = 'wordpress_custom_settings';
-
 		$this->set_page_title( __( 'FG Prices Settings', 'fg-prices' ) );
 		$this->set_menu_title( __( 'FG Prices Settings', 'fg-prices' ) );
 		$this->set_menu_slug( 'fg-prices' );
@@ -60,5 +56,15 @@ class FG_Prices_Settings extends SettingsSetup {
 		$old_currency = $this->get_setting( 'fg_old_currency' );
 
 		return ! empty( $old_currency ) ? $old_currency : '';
+	}
+
+	public function get_settings_page_url() {
+
+		return add_query_arg(
+			array(
+				'page' => $this->get_menu_slug()
+			),
+			admin_url( $this->get_submenu_parent_slug() )
+		);
 	}
 }
