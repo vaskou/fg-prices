@@ -22,6 +22,7 @@ class FG_Prices_Settings extends SettingsSetup {
 		$this->set_page_title( __( 'FG Prices Settings', 'fg-prices' ) );
 		$this->set_menu_title( __( 'FG Prices Settings', 'fg-prices' ) );
 		$this->set_menu_slug( 'fg-prices' );
+		$this->add_settings_link( FG_PRICES_PLUGIN_BASENAME );
 
 		$this->add_section( new SettingSection( 'currencies', __( 'Currencies', 'fg-prices' ) ) );
 

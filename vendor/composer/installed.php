@@ -1,33 +1,32 @@
-<?php return array (
-  'root' => 
-  array (
-    'pretty_version' => 'dev-develop',
-    'version' => 'dev-develop',
-    'aliases' => 
-    array (
+<?php return array(
+    'root' => array(
+        'pretty_version' => 'dev-develop',
+        'version' => 'dev-develop',
+        'type' => 'library',
+        'install_path' => __DIR__ . '/../../',
+        'aliases' => array(),
+        'reference' => '6dc29675075c8d4c4e576ac3a8e418d94bd56f19',
+        'name' => '__root__',
+        'dev' => true,
     ),
-    'reference' => '45d5d4219343a716daa3313b7185e0596cf795f4',
-    'name' => '__root__',
-  ),
-  'versions' => 
-  array (
-    '__root__' => 
-    array (
-      'pretty_version' => 'dev-develop',
-      'version' => 'dev-develop',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '45d5d4219343a716daa3313b7185e0596cf795f4',
+    'versions' => array(
+        '__root__' => array(
+            'pretty_version' => 'dev-develop',
+            'version' => 'dev-develop',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../../',
+            'aliases' => array(),
+            'reference' => '6dc29675075c8d4c4e576ac3a8e418d94bd56f19',
+            'dev_requirement' => false,
+        ),
+        'vaskou/wordpress-custom-settings' => array(
+            'pretty_version' => 'v2.0.2',
+            'version' => '2.0.2.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../vaskou/wordpress-custom-settings',
+            'aliases' => array(),
+            'reference' => '8efd6485149cf949c1d46366d65b3c32b2cc4d3d',
+            'dev_requirement' => false,
+        ),
     ),
-    'vaskou/wordpress-custom-settings' => 
-    array (
-      'pretty_version' => 'v1.2.0',
-      'version' => '1.2.0.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => 'b6c930f95d1e8c3f7ce6fc6f24ba69639a03a0b9',
-    ),
-  ),
 );

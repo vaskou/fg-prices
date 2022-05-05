@@ -4,27 +4,27 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "be357d935dcc5ac0c9fc5ad7d9a0dfa5",
+    "content-hash": "8bd7841a93620bb0442589c67c8e6181",
     "packages": [
         {
             "name": "vaskou/wordpress-custom-settings",
-            "version": "v1.2.0",
+            "version": "v2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vaskou/wordpress-custom-settings.git",
-                "reference": "b6c930f95d1e8c3f7ce6fc6f24ba69639a03a0b9"
+                "reference": "8efd6485149cf949c1d46366d65b3c32b2cc4d3d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vaskou/wordpress-custom-settings/zipball/b6c930f95d1e8c3f7ce6fc6f24ba69639a03a0b9",
-                "reference": "b6c930f95d1e8c3f7ce6fc6f24ba69639a03a0b9",
+                "url": "https://api.github.com/repos/vaskou/wordpress-custom-settings/zipball/8efd6485149cf949c1d46366d65b3c32b2cc4d3d",
+                "reference": "8efd6485149cf949c1d46366d65b3c32b2cc4d3d",
                 "shasum": ""
             },
             "type": "library",
             "autoload": {
-                "psr-4": {
-                    "WordpressCustomSettings\\": "WordpressCustomSettings/"
-                }
+                "files": [
+                    "WordpressCustomSettings/bootstrap_2_0_2.php"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -39,9 +39,9 @@
             "description": "Wordpress Custom Settings",
             "support": {
                 "issues": "https://github.com/vaskou/wordpress-custom-settings/issues",
-                "source": "https://github.com/vaskou/wordpress-custom-settings/tree/v1.2.0"
+                "source": "https://github.com/vaskou/wordpress-custom-settings/tree/v2.0.2"
             },
-            "time": "2021-06-03T16:08:45+00:00"
+            "time": "2022-05-05T16:32:48+00:00"
         }
     ],
     "packages-dev": [],
@@ -52,5 +52,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.1.0"
 }
