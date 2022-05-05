@@ -13,12 +13,32 @@ class FG_Prices {
 	}
 
 	private function __construct() {
+		add_action( 'plugins_loaded', array( $this, 'includes' ) );
+
+		add_action( 'plugins_loaded', array( $this, 'init_classes' ) );
+
 		add_action( 'plugins_loaded', array( $this, 'on_plugins_loaded' ) );
-		add_filter( 'plugin_action_links_' . FG_PRICES_PLUGIN_BASENAME, array( $this, 'plugin_action_links' ) );
+
 		add_filter( 'fg_prices_get_multicurrency_prices', array( $this, 'get_multicurrency_prices' ), 10, 2 );
 		add_filter( 'fremediti_guitars_get_currency_symbol', array( $this, 'get_currency_symbol' ) );
 		add_filter( 'fg_prices_get_current_currency', array( $this, 'get_current_currency' ) );
+	}
 
+	public function includes() {
+		include 'class-fg-prices-currencies.php';
+		include 'class-fg-prices-dependencies.php';
+		include 'class-fg-prices-enqueues.php';
+		include 'class-fg-prices-settings.php';
+
+		include 'cmb2-fields/cmb2-multicurrency-prices/cmb2-multicurrency-prices.php';
+
+		include 'post-types-prices-hooks/abstract-class-fg-prices-post-types-prices-hooks.php';
+		include 'post-types-prices-hooks/class-fg-prices-fg-available-guitars.php';
+		include 'post-types-prices-hooks/class-fg-prices-fg-guitars.php';
+		include 'post-types-prices-hooks/class-fg-prices-fg-pickups.php';
+	}
+
+	public function init_classes() {
 		FG_Prices_Enqueues::instance();
 		FG_Prices_Dependencies::instance();
 		FG_Prices_Settings::instance();
@@ -29,15 +49,6 @@ class FG_Prices {
 
 	public function on_plugins_loaded() {
 		load_plugin_textdomain( 'fg-prices', false, FG_PRICES_PLUGIN_DIR_NAME . '/languages/' );
-	}
-
-	public function plugin_action_links( $links ) {
-		$url          = FG_Prices_Settings::instance()->get_settings_page_url();
-		$plugin_links = array(
-			'<a href="' . esc_url( $url ) . '">' . esc_html__( 'Settings', 'fg-prices' ) . '</a>',
-		);
-
-		return array_merge( $plugin_links, $links );
 	}
 
 	public function get_multicurrency_prices( $price, $multicurrency_prices ) {
