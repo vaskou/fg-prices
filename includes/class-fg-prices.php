@@ -22,6 +22,7 @@ class FG_Prices {
 		add_filter( 'fg_prices_get_multicurrency_prices', array( $this, 'get_multicurrency_prices' ), 10, 2 );
 		add_filter( 'fremediti_guitars_get_currency_symbol', array( $this, 'get_currency_symbol' ) );
 		add_filter( 'fg_prices_get_current_currency', array( $this, 'get_current_currency' ) );
+		add_filter( 'fremediti_guitars_price_format', array( $this, 'price_format' ), 10, 3 );
 	}
 
 	public function includes() {
@@ -77,6 +78,30 @@ class FG_Prices {
 			}
 		}
 
-		return $current_currency;
+		return 'USD';//$current_currency;
+	}
+
+	public function price_format( $formatted_price, $price, $currency_symbol ) {
+		$current_currency = $this->get_current_currency('');
+		$currency_symbols = FG_Prices_Currencies::get_currency_symbols();
+error_log( print_r( $formatted_price, 1) );error_log( print_r( $price, 1) );error_log( print_r( $currency_symbol, 1) );
+		$selected_currency = '';
+		foreach ( $currency_symbols as $currency => $symbol ) {
+			if ( $symbol == $currency_symbol ) {
+				$selected_currency = $currency;
+				break;
+			}
+		}
+error_log( print_r( $selected_currency, 1) );
+		switch ( $selected_currency ) {
+			case 'EUR':
+				$formatted_price = sprintf( '%s %s', esc_attr( number_format( $price, 2, ',', '.' ) ), $currency_symbol );
+				break;
+			case 'USD':
+				$formatted_price = sprintf( '%s%s', $currency_symbol, esc_attr( number_format( $price, 2, '.', ',' ) ) );
+				break;
+		}
+
+		return $formatted_price;
 	}
 }
