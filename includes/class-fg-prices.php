@@ -20,7 +20,9 @@ class FG_Prices {
 		add_action( 'plugins_loaded', array( $this, 'on_plugins_loaded' ) );
 
 		add_filter( 'fg_prices_get_multicurrency_prices', array( $this, 'get_multicurrency_prices' ), 10, 2 );
-		add_filter( 'fremediti_guitars_get_currency_symbol', array( $this, 'get_currency_symbol' ) );
+		add_filter( 'fremediti_guitars_get_current_currency_symbol', array( $this, 'get_current_currency_symbol' ) );
+		add_filter( 'fremediti_guitars_get_current_currency', array( $this, 'get_current_currency' ) );
+		add_filter( 'fremediti_guitars_get_currency_symbol', array( $this, 'get_currency_symbol' ), 10, 2 );
 		add_filter( 'fg_prices_get_current_currency', array( $this, 'get_current_currency' ) );
 	}
 
@@ -57,7 +59,13 @@ class FG_Prices {
 		return $multicurrency_prices[ $current_currency ] ?? '';
 	}
 
-	public function get_currency_symbol( $currency_symbol ) {
+	public function get_currency_symbol( $currency_symbol, $currency ) {
+		$currency_symbols = FG_Prices_Currencies::get_currency_symbols();
+
+		return ! empty( $currency_symbols[ $currency ] ) ? $currency_symbols[ $currency ] : $currency_symbol;
+	}
+
+	public function get_current_currency_symbol( $currency_symbol ) {
 		$current_currency_symbol = FG_Prices_Currencies::get_current_currency_symbol();
 
 		return ! empty( $current_currency_symbol ) ? $current_currency_symbol : $currency_symbol;
