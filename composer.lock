@@ -8,22 +8,22 @@
     "packages": [
         {
             "name": "vaskou/wordpress-custom-settings",
-            "version": "v2.0.2",
+            "version": "v2.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vaskou/wordpress-custom-settings.git",
-                "reference": "8efd6485149cf949c1d46366d65b3c32b2cc4d3d"
+                "reference": "afd95a185e3c5cc6073fc57ab374a74411b54256"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vaskou/wordpress-custom-settings/zipball/8efd6485149cf949c1d46366d65b3c32b2cc4d3d",
-                "reference": "8efd6485149cf949c1d46366d65b3c32b2cc4d3d",
+                "url": "https://api.github.com/repos/vaskou/wordpress-custom-settings/zipball/afd95a185e3c5cc6073fc57ab374a74411b54256",
+                "reference": "afd95a185e3c5cc6073fc57ab374a74411b54256",
                 "shasum": ""
             },
             "type": "library",
             "autoload": {
                 "files": [
-                    "WordpressCustomSettings/bootstrap_2_0_2.php"
+                    "WordpressCustomSettings/bootstrap_2_0_4.php"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -39,9 +39,9 @@
             "description": "Wordpress Custom Settings",
             "support": {
                 "issues": "https://github.com/vaskou/wordpress-custom-settings/issues",
-                "source": "https://github.com/vaskou/wordpress-custom-settings/tree/v2.0.2"
+                "source": "https://github.com/vaskou/wordpress-custom-settings/tree/v2.0.4"
             },
-            "time": "2022-05-05T16:32:48+00:00"
+            "time": "2023-09-29T08:35:33+00:00"
         }
     ],
     "packages-dev": [],
