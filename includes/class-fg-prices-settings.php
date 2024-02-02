@@ -36,6 +36,7 @@ class FG_Prices_Settings extends SettingsSetup {
 			new SettingField( 'fg_old_currency', __( 'Old Currency', 'fg-prices' ), 'select', 'currencies', $args ),
 			new SettingField( 'fg_currencies', __( 'Currencies', 'fg-prices' ), 'multiselect', 'currencies', $args ),
 			new SettingField( 'fg_default_currency', __( 'Default Currency', 'fg-prices' ), 'select', 'currencies', $args ),
+			new SettingField( 'fg_enable_geoip_rule', __( 'Enable GeoIP Rules', 'fg-prices' ), 'checkbox', 'currencies' ),
 		);
 
 		foreach ( $settings as $setting ) {
@@ -63,5 +64,9 @@ class FG_Prices_Settings extends SettingsSetup {
 		$old_currency = $this->get_setting( 'fg_old_currency' );
 
 		return ! empty( $old_currency ) ? $old_currency : '';
+	}
+
+	public static function get_enable_geoip_rule() {
+		return self::instance()->get_setting( 'fg_enable_geoip_rule' ) == 'Y';
 	}
 }

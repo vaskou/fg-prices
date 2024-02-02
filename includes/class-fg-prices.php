@@ -73,6 +73,10 @@ class FG_Prices {
 
 	public function get_current_currency( $current_currency ) {
 
+		if ( ! FG_Prices_Settings::get_enable_geoip_rule() ) {
+			return $current_currency;
+		}
+
 		if ( function_exists( 'geoip_detect2_get_info_from_current_ip' ) ) {
 			$info               = geoip_detect2_get_info_from_current_ip();
 			$country_code       = $info->country->isoCode;
