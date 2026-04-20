@@ -38,6 +38,7 @@ class FG_Prices {
 		include 'post-types-prices-hooks/class-fg-prices-fg-available-guitars.php';
 		include 'post-types-prices-hooks/class-fg-prices-fg-guitars.php';
 		include 'post-types-prices-hooks/class-fg-prices-fg-pickups.php';
+		include 'post-types-prices-hooks/class-fg-prices-fg-guitars-some-versions.php';
 	}
 
 	public function init_classes() {
@@ -47,6 +48,7 @@ class FG_Prices {
 		FG_Prices_FG_Available_Guitars::instance();
 		FG_Prices_FG_Guitars::instance();
 		FG_Prices_FG_Pickups::instance();
+		FG_Prices_FG_Guitars_Some_Versions::instance();
 	}
 
 	public function on_plugins_loaded() {
